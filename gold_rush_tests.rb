@@ -11,13 +11,19 @@ class GoldRushTests < Minitest::Test
   	@test_prospector = Prospector.new
   	@test_prospector.intialize
   end
+
+  # This method tests if the prospector exists and is indeed 
+  # a Prospector object.
+  def test_existence
+  	refute_nil @test_prospector
+  	assert_kind_of Prospector, @test_prospector
+  end
+
   # This unit test tests if the intialize method works
   # a prospectors minerals and moves are set to 0
   # previous location should be nil and current is sutter creek
   # This test makes sure the values are as they should be
   def test_intialize
-  	refute_nil @test_prospector
-  	assert_kind_of Prospector, @test_prospector
 	assert_equal 0, @test_prospector.current_gold
 	assert_equal 0, @test_prospector.current_silver
 	assert_equal 0, @test_prospector.total_gold
@@ -250,4 +256,5 @@ class GoldRushTests < Minitest::Test
   	test_group = ProspectorGroup.new
   	assert_equal 12 , test_group.spawn_prospectors(12).size
   end
+
 end

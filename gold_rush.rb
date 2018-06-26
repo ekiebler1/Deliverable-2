@@ -2,7 +2,7 @@ require_relative 'prospector_group.rb'
 
 # if the wrong arguments are given, show them how its done
 def show_usage_and_exit
-  puts 'Usage:' , 'ruby gold_rush.rb *seed* *num_prosectors*','*seed* should be an integer','*num_prosectors* should be a positive integer'
+  puts 'Usage:', 'ruby gold_rush.rb *seed* *num_prosectors*', '*seed* should be an integer', '*num_prosectors* should be a positive integer'
   exit 1
 end
 
@@ -31,7 +31,7 @@ if valid_args
   new_seed = ARGV[0].to_i
   num_prosectors = ARGV[1].to_i
   g = ProspectorGroup.new
-  g.play(new_seed , num_prosectors)
+  g.play(new_seed, num_prosectors)
 else
   show_usage_and_exit
 end

@@ -1,5 +1,5 @@
 require_relative 'prospector'
-# This is the class for the group of prospectors. Given a seed and a 
+# This is the class for the group of prospectors. Given a seed and a
 # number of prospectors it runs the game for that many prospectors
 class ProspectorGroup
 
@@ -8,7 +8,7 @@ class ProspectorGroup
   attr_accessor :num_prospectors
 
   # This is the set up method for this class. It seeds the random number
-  # generator, spawns and intializes the group of prospectors, and sets 
+  # generator, spawns and intializes the group of prospectors, and sets
   # the iteration counter to 0
   def intialize_group(seed, num_prospectors)
     srand(seed)
@@ -17,8 +17,8 @@ class ProspectorGroup
   end
 
   # This is the method that actually spawns and intializes the prospectors.
-  # It create the group of prospectors based off the given size and then 
-  # calls the initialize method on all of them, setting them at the start of 
+  # It create the group of prospectors based off the given size and then
+  # calls the initialize method on all of them, setting them at the start of
   # the game.
   def spawn_prospectors(num_prospectors)
     prospectors = []
@@ -32,7 +32,7 @@ class ProspectorGroup
   end
 
   # This is were the actual magic happens. Prospector by Prospector, they
-  # each run through the simulation, calling the iterate method, allowing each 
+  # each run through the simulation, calling the iterate method, allowing each
   # 5 moves, and then returning to San Fran.
   def iterate_all
 	count = 0

@@ -1,6 +1,5 @@
 # the main class for the prospector object
 class Prospector
-
   attr_accessor :current_gold
   attr_accessor :current_silver
   attr_accessor :total_gold
@@ -12,9 +11,9 @@ class Prospector
 
   # This method intializes all the prospectors variable
   # all mineral counts are set to 0
-  # the locations are set to nil for previous and current to 
+  # the locations are set to nil for previous and current to
   # sutter creek for the start of the game
-  # the number of days and move count are also set to 0 
+  # the number of days and move count are also set to 0
   # because nothing has happened yet
   def intialize
     @current_gold = 0
@@ -42,20 +41,20 @@ class Prospector
   # ------------------------------------
   def mine
   	case @current_location
-	when 'Sutter Creek'
-	  sutter_creek_mine
-	when 'Coloma'
-	  coloma_mine
-	when 'Angels Camp'
-	  angels_camp_mine
-	when 'Nevada City'
-	  nevada_city_mine
-	when 'Virginia City'
-	  virginia_city_mine
-	when 'Midas'
-	  midas_mine
-	when 'El Dorado Canyon'
-	  el_dorado_cn_mine
+	  when 'Sutter Creek'
+	    sutter_creek_mine
+	  when 'Coloma'
+	    coloma_mine
+	  when 'Angels Camp'
+	    angels_camp_mine
+	  when 'Nevada City'
+	    nevada_city_mine
+	  when 'Virginia City'
+	    virginia_city_mine
+	  when 'Midas'
+	    midas_mine
+	  when 'El Dorado Canyon'
+	    el_dorado_cn_mine
 	end
 	display_current_spoils
   end
@@ -67,30 +66,30 @@ class Prospector
   #  \
   #   \
   #  Angels Camp
-  #    |     \            /---------- Midas
-  #    |     Virginia City              |
-  #    |            |    \              |
-  #    |            |     \---------- El Dorado Canyon
-  #    |            |
-  #    |            |
-  #Sutter Creek - Coloma
+  #    |     \            /----------- Midas
+  #    |     Virginia City               |
+  #    |             |    \              |
+  #    |             |     \---------- El Dorado Canyon
+  #    |             |
+  #    |             |
+  # Sutter Creek - Coloma
   def move
   	@previous_location = @current_location
 	case @current_location
-	when 'Sutter Creek'
-	  @current_location = sutter_creek_move
-	when 'Coloma'
-	  @current_location = coloma_move
-	when 'Angels Camp'
-	  @current_location = angels_camp_move
-	when 'Nevada City'
-	  @current_location = nevada_city_move
-	when 'Virginia City'
-	  @current_location = virginia_city_move
-	when 'Midas'
-	  @current_location = midas_move
-	when 'El Dorado Canyon'
-	  @current_location = el_dorado_cn_move
+	  when 'Sutter Creek'
+	    @current_location = sutter_creek_move
+	  when 'Coloma'
+	    @current_location = coloma_move
+	  when 'Angels Camp'
+	    @current_location = angels_camp_move
+	  when 'Nevada City'
+	    @current_location = nevada_city_move
+	  when 'Virginia City'
+	    @current_location = virginia_city_move
+	  when 'Midas'
+	    @current_location = midas_move
+	  when 'El Dorado Canyon'
+	    @current_location = el_dorado_cn_move
 	end
 	puts 'Moving from ' + String(@previous_location) + ' to ' + String(@current_location) + ', carrying ' + String(@total_gold) + ounce_v_ounces(@total_gold) + ' of gold and ' + String(@total_silver) + ounce_v_ounces(@total_silver) + ' of silver.'
   end
@@ -99,11 +98,11 @@ class Prospector
   # It preforms the mining and moving of the prospector and then
   # once the game is over shows how the prospector did
   def iterate
-  	while(end? == false)
+  	while end? == false
   	  if move? && @num_days !=0
-  	    @move_count += 1 
+  	    @move_count += 1
   	  	move
-  	  end  	  
+  	  end
   	  mine
   	  @num_days += 1
   	end
@@ -112,11 +111,11 @@ class Prospector
 
   # Displays the metals the prospector found each iteration
   def display_current_spoils
-  	if @current_silver == 0 && @current_gold == 0
+  	if @current_silver.zero? && @current_gold.zero?
 	  puts 'No Precious Metals Found at ' + String(@current_location)
 	else
 	  if @current_silver != 0
-	    puts 'Found ' + String(@current_silver) + ounce_v_ounces(@current_silver) + ' of silver in ' + String(@current_location) 
+	    puts 'Found ' + String(@current_silver) + ounce_v_ounces(@current_silver) + ' of silver in ' + String(@current_location)
 	  end
 	  if @current_gold != 0
 	    puts 'Found ' + String(@current_gold) + ounce_v_ounces(@current_gold) + ' of gold in ' + String(@current_location)
@@ -127,30 +126,28 @@ class Prospector
   # Displays ounces or ounce based off the given amount of a mineral
   # 1 = ounce
   # anything else = ounces
-  def ounce_v_ounces mineral
+  def ounce_v_ounces(mineral)
 	if mineral == 1
 	  ' ounce'
-	else 
+	else
 	  ' ounces'
 	end
   end
 
   # Checks if the prospector should move. If they have moved 3 or less times
   # they move if they find neither gold or silver. If they have moved more than
-  # 3 times, they move if they find 2 or less gold and 3 or less silver 
+  # 3 times, they move if they find 2 or less gold and 3 or less silver.
   def move?
   	if @move_count < 3
-	  if @current_gold == 0 && @current_silver == 0
+	  if @current_gold.zero? && @current_silver.zero?
 	    true
 	  else
 	  	false
 	  end
-	else
-	  if @current_gold < 2 && @current_silver < 3
+	elsif @current_gold < 2 && @current_silver < 3
 	  	true
-	  else
+	else
 		false
-	  end
 	end
   end
 
@@ -159,8 +156,8 @@ class Prospector
   	if @move_count < 4
   	  false
   	else
-	  true
-	end
+  	  true
+  	end
   end
 
   # Adds the current gold and current silver to the total gold and total silver
@@ -169,8 +166,9 @@ class Prospector
 	@total_silver += @current_silver
   end
 
-  # Displays the end message of the game. It says how many days the prospector lasted,
-  # how much gold and silver they found, and the amount of $$ that gold and silver is worth
+  # Displays the end message of the game. It says how many days the prospector
+  # lasted, how much gold and silver they found, and the amount of $$ that 
+  # gold and silver is worth.
   def display_end_message
     puts 'After ' + String(@num_days) + ' days, the Prospector returns to San Fransisco with:'
 	puts String(@total_gold) + String(ounce_v_ounces(@total_gold)) + ' of gold.'
@@ -178,13 +176,15 @@ class Prospector
 	puts 'Heading home with $' + calc_total + '.'
   end
 
-  # Calculates the amount of $$ a prospector earns based off the amount of gold and silver.
+  # Calculates the amount of $$ a prospector earns based off the amount
+  # of current_gold and current_silver.
   def calc_total
     String((@total_gold * 20.67 + @total_silver * 1.31).round(2))
   end
 
-  # These are the different random mining methods, the amount of minerals recieved is
-  # determined by location: each on is said on the chart above the mine method
+  # These are the different random mining methods, the amount of minerals
+  # recieved is determined by location: each on is said on the chart
+  # above the mine method.
   def sutter_creek_mine
 	@current_gold = rand(3)
 	@current_silver = 0
@@ -228,7 +228,7 @@ class Prospector
   end
 
   # These are the methods that determine where a prospector will move based on current location
-  # the choices of where based on each location are shown above the move method 
+  # the choices of where based on each location are shown above the move method
   def sutter_creek_move
 	case rand(2)
 	when 0
