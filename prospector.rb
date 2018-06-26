@@ -93,20 +93,19 @@ class Prospector
 	  @current_location = el_dorado_cn_move
 	end
 	puts 'Moving from ' + String(@previous_location) + ' to ' + String(@current_location) + ', carrying ' + String(@total_gold) + ounce_v_ounces(@total_gold) + ' of gold and ' + String(@total_silver) + ounce_v_ounces(@total_silver) + ' of silver.'
-	@move_count += 1
   end
 
   # This is the main method that preforms the game for the prospector.
   # It preforms the mining and moving of the prospector and then
   # once the game is over shows how the prospector did
   def iterate
-  	loop do	
-  		mine
-  		if move?
-  			move
-  		end
-  		@num_days += 1
-  		break if end?
+  	while(end? == false)
+  	  if move? && @num_days !=0
+  	    @move_count += 1 
+  	  	move
+  	  end  	  
+  	  mine
+  	  @num_days += 1
   	end
   	display_end_message
   end
