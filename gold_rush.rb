@@ -31,8 +31,7 @@ if valid_args
   new_seed = ARGV[0].to_i
   num_prosectors = ARGV[1].to_i
   g = ProspectorGroup.new
-  g.intialize_group(new_seed, num_prosectors)
-  g.play
+  g.play(new_seed , num_prosectors)
 else
   show_usage_and_exit
 end

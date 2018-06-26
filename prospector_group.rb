@@ -46,7 +46,8 @@ class ProspectorGroup
 
   # This is the function the starter ruby file calls to play the game.
   # It spawns the prospectors and then runs through the game with each
-  def play
+  def play(seed, num_prospectors)
+  	intialize_group(seed, num_prospectors)
   	@prospectors = spawn_prospectors(@num_prospectors)
 	iterate_all
 	exit 1
